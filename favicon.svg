@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Vibrant Modern Tech Gradient Background -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ebebe3" /> <!-- Indigo -->
+      <stop offset="50%" stop-color="#ebebe3" /> <!-- Purple -->
+      <stop offset="100%" stop-color="#ebebe3" /> <!-- Pink -->
+    </linearGradient>
+  </defs>
+
+  <!-- Base App Icon Shape (Rounded Rectangle) -->
+  <rect width="512" height="512" rx="112" fill="url(#bg-grad)" />
+
+  <!-- Mobile Phone Body -->
+  <!-- Dark slate screen to make the colorful icons pop -->
+  <rect x="136" y="56" width="240" height="400" rx="40" fill="#ffff" stroke="#20203b" stroke-width="24" />
+  
+  <!-- Phone Speaker -->
+  <line x1="224" y1="92" x2="288" y2="92" stroke="#20203b" stroke-width="12" stroke-linecap="round" />
+  
+  <!-- Phone Home/Action Button -->
+  <circle cx="256" cy="416" r="14" fill="#20203b" />
+
+  <!-- TOP SCREEN: Globe Symbolizing "Real Country Format" -->
+  <g transform="translate(256, 166)">
+    <!-- Globe outline -->
+    <circle cx="0" cy="0" r="40" fill="none" stroke="#38BDF8" stroke-width="12" />
+    <!-- Globe meridians/equators -->
+    <ellipse cx="0" cy="0" rx="16" ry="40" fill="none" stroke="#38BDF8" stroke-width="12" />
+    <line x1="-40" y1="0" x2="40" y2="0" stroke="#38BDF8" stroke-width="12" stroke-linecap="round"/>
+    <line x1="0" y1="-40" x2="0" y2="40" stroke="#38BDF8" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <!-- BOTTOM SCREEN: Randomizer & Number Generation -->
+  <g transform="translate(256, 306)">
+     <!-- Cycle / Randomize Arrows (Neon Green) -->
+     <path d="M -48 0 A 48 48 0 0 1 48 0" fill="none" stroke="#34D399" stroke-width="12" stroke-linecap="round" />
+     <polygon points="48,16 34,-4 62,-4" fill="#34D399" />
+     
+     <path d="M 48 0 A 48 48 0 0 1 -48 0" fill="none" stroke="#34D399" stroke-width="12" stroke-linecap="round" />
+     <polygon points="-48,-16 -62,4 -34,4" fill="#34D399" />
+
+     <!-- Central Hashtag / Number Symbol (Bright Yellow) -->
+     <g stroke="#FDE047" stroke-width="14" stroke-linecap="round">
+        <line x1="-18" y1="-14" x2="22" y2="-14" />
+        <line x1="-22" y1="14" x2="18" y2="14" />
+        <line x1="-6" y1="-28" x2="-14" y2="28" />
+        <line x1="14" y1="-28" x2="6" y2="28" />
+     </g>
+  </g>
+</svg>
