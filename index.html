@@ -463,11 +463,11 @@ const COUNTRIES = [
   { name: "Tanzania",          dial: "+255",  flag: "🇹🇿", format: "7XX XXX XXX",  digits: [7,9] },
   { name: "Thailand",          dial: "+66",   flag: "🇹🇭", format: "8X XXX XXXX",  digits: [8,9] },
   { name: "Turkey",            dial: "+90",   flag: "🇹🇷", format: "5XX XXX XXXX", digits: [5,10] },
-  { name: "UAE",               dial: "+971",  flag: "🇦🇪", format: "5X XXX XXXX",  digits: [5,9] },
+  { name: "UAE",               dial: "+971",  flag: "🇦🇪", format: "5X XXX XXXX",  digits: [5,9],  aliases: ["United Arab Emirates","emirates","dubai","abu dhabi"] },
   { name: "Uganda",            dial: "+256",  flag: "🇺🇬", format: "7XX XXXXXX",   digits: [7,9] },
   { name: "Ukraine",           dial: "+380",  flag: "🇺🇦", format: "9X XXX XXXX",  digits: [9,9] },
-  { name: "United Kingdom",    dial: "+44",   flag: "🇬🇧", format: "7XXX XXXXXX",  digits: [7,10] },
-  { name: "United States",     dial: "+1",    flag: "🇺🇸", format: "XXX XXX XXXX", digits: [3,10] },
+  { name: "United Kingdom",    dial: "+44",   flag: "🇬🇧", format: "7XXX XXXXXX",  digits: [7,10], aliases: ["uk","britain","england","gb"] },
+  { name: "United States",     dial: "+1",    flag: "🇺🇸", format: "XXX XXX XXXX", digits: [3,10], aliases: ["us","usa","america","u.s.","u.s.a."]},
   { name: "Vietnam",           dial: "+84",   flag: "🇻🇳", format: "9XX XXX XXX",  digits: [9,9] },
 ];
 
@@ -563,10 +563,14 @@ function renderGrid(filter = '') {
   const noRes = document.getElementById('noResults');
   grid.innerHTML = '';
 
-  const filtered = COUNTRIES.filter(c =>
-    c.name.toLowerCase().includes(filter.toLowerCase()) ||
-    c.dial.includes(filter)
-  );
+  const q = filter.toLowerCase().replace(/[.\s]/g, '');
+  const filtered = COUNTRIES.filter(c => {
+    if (!q) return true;
+    const nameNorm = c.name.toLowerCase().replace(/[.\s]/g, '');
+    if (nameNorm.includes(q)) return true;
+    if (c.dial.includes(filter)) return true;
+    return (c.aliases || []).some(a => a.replace(/[.\s]/g, '').includes(q));
+  });
 
   document.getElementById('visibleCount').textContent = filtered.length;
   document.getElementById('searchTerm').textContent = filter;
@@ -616,7 +620,7 @@ searchEl.addEventListener('input', () => {
   clearTimeout(debounce);
   const v = searchEl.value.trim();
   clearBtn.style.display = v ? 'block' : 'none';
-  debounce = setTimeout(() => renderGrid(v), 200);
+  renderGrid(v);
 });
 clearBtn.addEventListener('click', () => {
   searchEl.value = '';
